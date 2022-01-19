@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::post('/update', [InputController::class, 'update'])->name('update');
 
 Route::get('/delete/{id}', [InputController::class, 'delete'])->name('delete')->where('id','[0-9]+');
 Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', [RegisterController::class, 'store']);
