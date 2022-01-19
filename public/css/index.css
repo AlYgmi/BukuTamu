@@ -1,0 +1,139 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+
+nav{
+    height: 56px;
+    line-height: 56px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-weight: bold;
+    display: flex;
+    font-size: 17px;
+    justify-content: space-between;
+}
+
+a {
+    transition: all .2s;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0px 25px;
+}
+
+nav a:hover {
+    background-color: #ffffff3f;
+}
+
+nav h1 {
+    text-align: left;
+    font-size: 25px;
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0px 20px 0px 50px;
+}
+
+.h3_title{
+    color: #00C1D4;
+    padding: 40px;
+}
+
+tr, th, td {
+    color: black;
+    padding: 20px;
+}
+
+table{
+    background-color: white;
+    width: 100%;
+    border: 3px solid #00C1D4;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.btn_update{
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #D4AC2B;
+    padding: 8px;
+    color: white;
+    margin-right: 10px;
+}
+
+.btn_update:hover{
+    filter: brightness(130%);
+}
+
+.btn_delete{
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #DA0037;
+    padding: 8px;
+    color: white;
+}
+
+.btn_delete:hover{
+    filter: brightness(130%);
+}
+
+.btn_logout{
+    color: #DA0037;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.btn_logout:hover{
+    filter: brightness(130%);
+}
+
+footer .total{
+    color: white;
+    font-size: 20px;
+}
+
+.container{
+    border: 3px solid #00C1D4;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+}
+
+tr:nth_child(even) {
+    background-color:rgb(245, 245, 245);
+}
+
+tr:hover{
+    background-color: rgb(230, 230, 230);
+}
+
+@media (max-width: 767px) {
+    .container{
+        display: block;
+        width: 100%;
+    }
+    section:before{
+        display: block;
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        padding: 0 0 10px;
+    }
+}
