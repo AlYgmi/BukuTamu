@@ -6,17 +6,21 @@
         <div class="text-center"><h3 class="mt" style="color: white">Selamat datang di Buku Tamu</h3></div>
         <div class="row mt-5">
             <div class="col">
+                @auth
                 <div class="text-center">
-                    <a href="/input" class="btn btn-outline-primary" style="margin-left: 400px;">Masukkan data</a>
+                    <a href="/show" class="btn btn-outline-primary">Lihat data</a>
                 </div>
-            </div>
-            <div class="col">
+                @else
                 <div class="text-center">
-                    <a href="/show" class="btn btn-outline-secondary" style="margin-right: 400px;">Lihat data</a>
+                    <a href="/input" class="btn btn-outline-primary">Masukkan data</a>
                 </div>
+                @endauth
             </div>
         </div>
     </div>
+    {{-- @auth
+        <a href="#">logout</a>
+    @endauth --}}
 @endsection    
 
 

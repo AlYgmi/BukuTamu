@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 <body style="background-color: black">
-    <a href="/login" class="container text-decoration-none ms-auto" style="color: white;"><i class="bi bi-box-arrow-in-right"></i>login</a>
+    @auth
+        <form action="/logout" method="POST">
+            @csrf
+            <button type="submit" class="dropdown-item" style="color: white;"><i class="bi bi-box-arrow-right"></i></button>
+        </form>
+    @else
+    <a href="/login" class="container text-decoration-none ms-auto" style="color: white;"><i class="bi bi-box-arrow-in-right"></i></a>
+    @endauth
     <div class="container-fluid">
 @yield('ajax')
     </div>
