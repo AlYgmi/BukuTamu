@@ -11,10 +11,11 @@
 </head>
 <body style="background-color: black">
     @auth
-        <form action="/logout" method="POST">
+    <a href="/" class="container" style="color: white"><i class="bi bi-box-arrow-right"></i></a>
+        {{-- <form action="/logout" method="POST">
             @csrf
-            <button type="submit" class="dropdown-item" style="color: white;"><i class="bi bi-box-arrow-right"></i></button>
-        </form>
+            <button type="submit" class="dropdown-item" style="color: white;"></button>
+        </form> --}}
     @else
     <a href="/login" class="container text-decoration-none ms-auto" style="color: white;"><i class="bi bi-box-arrow-in-right"></i></a>
     @endauth

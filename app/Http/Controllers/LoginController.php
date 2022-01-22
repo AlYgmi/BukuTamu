@@ -15,28 +15,43 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            'password' => 'required'
-        ]);
+        $This->validate($request, [
+            'Email' => 'required|email', 
+            'Password' => 'required']) ;
+         
+         
+         If (!auth() ->attempt($requesr->only('email', 'password'))) { 
+         return back() ;
+         }
+         return redirect('/') ;
+         
+        // $credentials = $request->validate([
+        //     'email' => 'required|email:dns',
+        //     'password' => 'required'
+        // ]);
 
-        if(Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // if(Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
 
-            return redirect()->intended('show');
-        }
+        //     return redirect()->intended('show');
+        // }
 
-        return back()->with('loginError', 'Login Gagal');
+        // return back()->with('loginError', 'Login Gagal');
 
     }
     public function logout(Request $request) 
     {
-        Auth::logout();
+            auth()->logout;
+            
+            return redirect('bebas') ;
+            
+            
+        // Auth::logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regeneratedToken();
+        // $request->session()->regeneratedToken();
 
-        return redirect('/');
+        // return redirect('/');
     }
 }
