@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+//use Illuminate\Support\Facades\Session;
+use Session;
 
 class LoginController extends Controller
 {
@@ -15,43 +16,50 @@ class LoginController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $This->validate($request, [
-            'Email' => 'required|email', 
-            'Password' => 'required']) ;
+//        $this->authenticate($request, [
+//            'email' => 'required|email', 
+//            'password' => 'required']) ;
          
          
-         If (!auth() ->attempt($requesr->only('email', 'password'))) { 
-         return back() ;
+//         if (!auth()->attempt($requesr->only('email', 'password'))) { 
+//         return back();
+//         }
+//         return redirect('/');
+         
+         $credentials = $request->validate([
+             'email' => 'required|email:dns',
+             'password' => 'required'
+         ]);
+
+         if(Auth::attempt($credentials)) {
+             $request->session()->regenerate();
+
+             return redirect()->intended('show');
          }
-         return redirect('/') ;
-         
-        // $credentials = $request->validate([
-        //     'email' => 'required|email:dns',
-        //     'password' => 'required'
-        // ]);
 
-        // if(Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('show');
-        // }
-
-        // return back()->with('loginError', 'Login Gagal');
+         return back()->with('loginError', 'Login Gagal');
 
     }
-    public function logout(Request $request) 
+
+    public function logout() 
     {
-            auth()->logout;
+	    return view('login.logout');
+    }
+
+    public function proses_logout(Request $request) 
+    {
+	    Auth::logout();
+        //    auth()->logout;
             
-            return redirect('bebas') ;
+        //    return redirect('index') ;
             
             
         // Auth::logout();
 
-        // $request->session()->invalidate();
+         // $request->session()->invalidate();
 
-        // $request->session()->regeneratedToken();
+         // $request->session()->regeneratedToken();
 
-        // return redirect('/');
+         return redirect('/');
     }
 }
