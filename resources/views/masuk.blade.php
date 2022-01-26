@@ -36,7 +36,22 @@
                 <strong><label for="profile">Ambil foto</label></strong>
             </div>
             <div class="col_input">
+                <script src="{{ asset('js/webcam.js') }}"></script>
+                <div id="my_camera" style="width:320px; height:240px;"></div>
+                <div id="my_result"></div>
+                <script language="JavaScript">
+                    Webcam.attach( '#my_camera' );
+    
+                    function take_snapshot() {
+                        Webcam.snap( function(data_uri) {
+                            document.getElementById('my_result').innerHTML = '<img name="" src="'+data_uri+'"/>';
+                        } );
+                    }
+                </script>
+                <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+            {{-- 
                 <input name="profile" type="file" style="width: 100%; box-sizing: border-box" class="custom-file-input" required />
+             --}}
             </div>
         </div>
         <div class="main">
