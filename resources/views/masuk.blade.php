@@ -21,69 +21,70 @@
     <div class="container">
         <form action="{{ route('input') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="main">
-            <div class="col">
-                <strong>
-                    <label for="nama">Nama</label>
-                </strong>
+            <div class="main">
+                <div class="col">
+                    <strong>
+                        <label for="nama">Nama</label>
+                    </strong>
+                </div>
+                <div class="col_input">
+                    <input name="nama" type="text" style="width: 100%; box-sizing: border-box" placeholder="nama lengkap" required />
+                </div>
             </div>
-            <div class="col_input">
-                <input name="nama" type="text" style="width: 100%; box-sizing: border-box" placeholder="nama lengkap" required />
+            <div class="main">
+                <div class="col">
+                    <strong><label for="profile">Ambil foto</label></strong>
+                </div>
+                <div class="col_input">
+                    <script src="{{ asset('js/webcam.js') }}"></script>
+                    <div id="my_camera" style="width:320px; height:240px;"></div>
+                    <div id="my_result"></div>
+                    <script language="JavaScript">
+                        Webcam.attach( '#my_camera' );
+        
+                        function take_snapshot() {
+                            Webcam.snap( function(data_uri) {
+                                document.getElementById('my_result').innerHTML = '<img name="image" src="'+data_uri+'"/>';
+                                console.log(data_uri)
+                            } );
+                        }
+                    </script>
+                    <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+                {{-- 
+                    <input name="profile" type="file" style="width: 100%; box-sizing: border-box" class="custom-file-input" required />
+                --}}
+                </div>
             </div>
-        </div>
-        <div class="main">
-            <div class="col">
-                <strong><label for="profile">Ambil foto</label></strong>
+            <div class="main">
+                <div class="col">
+                    <strong><label for="alamat">Alamat lengkap</label></strong>
+                </div>
+                <div class="col_input">
+                    <input name="alamat" type="text" style="width: 100% ; box-sizing: border-box;" placeholder="alamat" required/>
+                </div>
             </div>
-            <div class="col_input">
-                <script src="{{ asset('js/webcam.js') }}"></script>
-                <div id="my_camera" style="width:320px; height:240px;"></div>
-                <div id="my_result"></div>
-                <script language="JavaScript">
-                    Webcam.attach( '#my_camera' );
-    
-                    function take_snapshot() {
-                        Webcam.snap( function(data_uri) {
-                            document.getElementById('my_result').innerHTML = '<img name="" src="'+data_uri+'"/>';
-                        } );
-                    }
-                </script>
-                <a href="javascript:void(take_snapshot())">Take Snapshot</a>
-            {{-- 
-                <input name="profile" type="file" style="width: 100%; box-sizing: border-box" class="custom-file-input" required />
-             --}}
+            <div class="main">
+                <div class="col">
+                    <strong><label for="tlp">Nomor Telepon</label></strong>
+                </div>
+                <div class="col_input">
+                    <input name="tlp" type="text" style="width: 100%; box-sizing: border-box;" placeholder="nomor telepon" required />
+                </div>
             </div>
-        </div>
-        <div class="main">
-            <div class="col">
-                <strong><label for="alamat">Alamat lengkap</label></strong>
+            <div class="main">
+                <div class="col">
+                    <strong><label for="keterangan">Keterangan</label></strong>
+                </div>
+                <div class="col_input">
+                    <textarea type="text" name="keterangan" class="textarea" placeholder="Keterangan" required /></textarea>
+                </div>
             </div>
-            <div class="col_input">
-                <input name="alamat" type="text" style="width: 100% ; box-sizing: border-box;" placeholder="alamat" required/>
+            <div class="main">
+                <center>
+                    <br>
+                    <button class="btn_send" type="submit" name="add">SUBMIT</button>
+                </center>
             </div>
-        </div>
-        <div class="main">
-            <div class="col">
-                <strong><label for="tlp">Nomor Telepon</label></strong>
-            </div>
-            <div class="col_input">
-                <input name="tlp" type="text" style="width: 100%; box-sizing: border-box;" placeholder="nomor telepon" required />
-            </div>
-        </div>
-        <div class="main">
-            <div class="col">
-                <strong><label for="keterangan">Keterangan</label></strong>
-            </div>
-            <div class="col_input">
-                <textarea type="text" name="keterangan" class="textarea" placeholder="Keterangan" required /></textarea>
-            </div>
-        </div>
-        <div class="main">
-            <center>
-                <br>
-                <button class="btn_send" type="submit" name="add">SUBMIT</button>
-            </center>
-        </div>
     </form>
     </div>
 </body>
