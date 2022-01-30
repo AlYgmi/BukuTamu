@@ -38,23 +38,39 @@ class InputController extends Controller
      */
     public function input(Request $request)
     {
-        $image = $request->file('image');
-        if($image){
-            $name_gen = hexdec(uniqid());
-            $img_ext = strtolower($image->getClientOriginalExtension());
-            $image_name = $name_gen.'.'.$img_ext;
-            $up_location = public_path('assets/image/');
-            $image->move($up_location,$image_name);
+        $image  = $request->file('profile');
+        $name_gen = hexdec(uniqid());
+        $img_ext = strtolower($image->getClientOriginalExtension());
+        $img_name = $name_gen.'.'.$img_ext;;
+        $up_location = public_path('/assets/image/');
+        $path = 'assets/image/';
+        $last_img = $path.$img_name;
+        $image->move($up_location, $img_name);
+        $input = input::create([
+            'nama' =>$request->nama,
+            'tlp' =>$request->telp,
+            'profile'=>$request->$last_img,
+            'alamat'=>$request->alamat,
+            'keterangan'=>$request->keterangan
+        ]);
+        return redirect(route('index'))->back()-with('success','berhasil input data');
+        // $image = $request->file('image');
+        // if($image){
+        //     $name_gen = hexdec(uniqid());
+        //     $img_ext = strtolower($image->getClientOriginalExtension());
+        //     $image_name = $name_gen.'.'.$img_ext;
+        //     $up_location = public_path('assets/image/');
+        //     $image->move($up_location,$image_name);
 
-            input::insert([
-                'inputs'=>$request->nama,
-                'inputs'=>$request->tlp,
-                'inputs'=>$request->alamat,
-                'inputs'=>$request->keterangan
-            ]);
-        }else{
+        //     input::insert([
+        //         'inputs'=>$request->nama,
+        //         'inputs'=>$request->tlp,
+        //         'inputs'=>$request->alamat,
+        //         'inputs'=>$request->keterangan
+        //     ]);
+        // }else{
 
-        }
+        // }
         // $nameFile = time().' '.$request->file('profile')->getClientOriginalName();
         // //bikin data baru
         // $input = Input::create([
@@ -67,8 +83,8 @@ class InputController extends Controller
 
         //untuk foto
         // $request->file('profile')->storeAs('profile', $request->file('profile')->getClientOriginalName()
-        $request->file('profile')->move(public_path().'/image/profile',$nameFile);
-        return redirect(route('index'));
+        //$request->file('profile')->move(public_path().'/image/profile',$nameFile);
+        //return redirect(route('index'));
     }
 
     /**
