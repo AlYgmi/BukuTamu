@@ -37,6 +37,7 @@ class InputController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function input(Request $request)
+    
     {
         $image  = $request->file('profile');
         $name_gen = hexdec(uniqid());
@@ -49,10 +50,11 @@ class InputController extends Controller
         $input = input::create([
             'nama' =>$request->nama,
             'tlp' =>$request->telp,
-            'profile'=>$request->$last_img,
+            'profile'=>$last_img,
             'alamat'=>$request->alamat,
             'keterangan'=>$request->keterangan
         ]);
+        
         return redirect(route('index'))->back()-with('success','berhasil input data');
         // $image = $request->file('image');
         // if($image){

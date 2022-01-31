@@ -36,7 +36,7 @@
                     <strong><label for="profile">Ambil foto</label></strong>
                 </div>
                 <div class="col_input">
-                    <input id="foto" name="profile" type="hidden">
+                    <input name="profile" type="file">
                     <script src="{{ asset('js/webcam.js') }}"></script>
                     <div id="my_camera" style="width:320px; height:240px;"></div>
                     <div id="my_result"></div>
@@ -45,7 +45,7 @@
         
                         function take_snapshot() {
                             Webcam.snap( function(data_uri) {
-                                document.getElementById('my_result').innerHTML = '<img name="image" src="'+data_uri+'"/>';
+                                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
                                 document.getElementById('foto').value = data_uri;
                                 // console.log(data_uri);
                             } );
