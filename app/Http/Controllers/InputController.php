@@ -39,10 +39,12 @@ class InputController extends Controller
     public function input(Request $request)
     
     {
-        $image  = $request->file('profile');
+        $image  = $request->profile;
+        
         $name_gen = hexdec(uniqid());
-        $img_ext = strtolower($image->getClientOriginalExtension());
-        $img_name = $name_gen.'.'.$img_ext;;
+        $img_ext = strtolower($image->getClientOriginalExtension(''));
+        $img_name = 'data:image/jpeg;base64,/'.$name_gen.'.'.'jpg';
+        dd($img_ext);
         $up_location = public_path('/assets/image/');
         $path = 'assets/image/';
         $last_img = $path.$img_name;

@@ -33,10 +33,10 @@
             </div>
             <div class="main">
                 <div class="col">
-                    <strong><label for="profile">Ambil foto</label></strong>
+                    <strong><label>Ambil foto</label></strong>
                 </div>
                 <div class="col_input">
-                    <input id="profile" type="hidden" name="profile" value="dasds"/>
+                    <input id="nganu" type="hidden" name="profile" value="dsadsa"/>
                     <script src="{{ asset('js/webcam.js') }}"></script>
                     <div id="my_camera" style="width:320px; height:240px;"></div>
                     <div id="my_result"></div>
@@ -44,10 +44,11 @@
                         Webcam.attach( '#my_camera' );
                         function take_snapshot() {
                             Webcam.snap( function(data_uri) {
-                                var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+                                var raw_image_data = data_uri.replace("data:image/jpeg;base64,", ' ');
+                                console.log(data_uri)
                                 var leta = document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
                                          
-                                document.getElementById('profile').value = raw_image_data; 
+                                document.getElementById('nganu').value = raw_image_data; 
                               
                             } );
                         }
