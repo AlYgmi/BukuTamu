@@ -37,78 +37,38 @@ class InputController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function input(Request $request)
-    
     {
         $image  = $request->profile;
-        
+        $encoded_data = $image;
+        $binary_data = base64_decode( $encoded_data );
         $name_gen = hexdec(uniqid());
-        $img_ext = strtolower($image->getClientOriginalExtension(''));
-        $img_name = 'data:image/jpeg;base64,/'.$name_gen.'.'.'jpg';
-        dd($img_ext);
-        $up_location = public_path('/assets/image/');
-        $path = 'assets/image/';
-        $last_img = $path.$img_name;
-        $image->move($up_location, $img_name);
+        $up_location = public_path('/image/profile/');
+        $img_name = $up_location.$name_gen.'.'.'jpg';
+        $path = 'image/profile/';
+        $imageDB = $path.$name_gen.'.jpg'; // BUAT DI INSERT DI DATABASE
+       
+        $result = file_put_contents( $img_name, $binary_data );
+        if (!$result) die("Could not save image!  Check file permissions.");
+    // save to server (beware of permissions)
+    
         $input = input::create([
             'nama' =>$request->nama,
             'tlp' =>$request->tlp,
-            'profile'=>$last_img,
+            'profile'=>$imageDB,
             'alamat'=>$request->alamat,
             'keterangan'=>$request->keterangan
         ]);
-        
         return redirect()->back()->with('success','berhasil input data');
-        // $image = $request->file('image');
-        // if($image){
-        //     $name_gen = hexdec(uniqid());
-        //     $img_ext = strtolower($image->getClientOriginalExtension());
-        //     $image_name = $name_gen.'.'.$img_ext;
-        //     $up_location = public_path('assets/image/');
-        //     $image->move($up_location,$image_name);
-
-        //     input::insert([
-        //         'inputs'=>$request->nama,
-        //         'inputs'=>$request->tlp,
-        //         'inputs'=>$request->alamat,
-        //         'inputs'=>$request->keterangan
-        //     ]);
-        // }else{
-
-        // }
-        // $nameFile = time().' '.$request->file('profile')->getClientOriginalName();
-        // //bikin data baru
-        // $input = Input::create([
-        //     'nama' => $request->nama,
-        //     'tlp' => $request->tlp,
-        //     'profile' => $nameFile,
-        //     'alamat' => $request->alamat,
-        //     'keterangan' => $request->keterangan
-        // ]);
-
-        //untuk foto
-        // $request->file('profile')->storeAs('profile', $request->file('profile')->getClientOriginalName()
-        //$request->file('profile')->move(public_path().'/image/profile',$nameFile);
-        //return redirect(route('index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Input  $input
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show()
     {
         $inputs = Input::all();
-        return view('show')->with('inputs', $inputs);
+        return view('show',compact('inputs'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Input  $input
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request)
     {
         $id = $request->id;

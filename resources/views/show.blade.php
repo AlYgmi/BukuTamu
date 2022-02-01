@@ -35,7 +35,7 @@
                 @forelse ($inputs as $input)
                     <tr>
                         <td>{{ $input->id }}.</td>
-                        <td><img src="{{ asset('/image/profile/' . $input->profile) }}" width=100></td>
+                        <td><img src="{{ asset($input->profile) }}" width="100px"></td>
                         <td>{{ $input->nama }}</td>
                         <td>{{ $input->tlp }}</td>
                         <td>{{ $input->alamat }}</td>
