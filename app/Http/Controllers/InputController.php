@@ -49,13 +49,13 @@ class InputController extends Controller
         $image->move($up_location, $img_name);
         $input = input::create([
             'nama' =>$request->nama,
-            'tlp' =>$request->telp,
+            'tlp' =>$request->tlp,
             'profile'=>$last_img,
             'alamat'=>$request->alamat,
             'keterangan'=>$request->keterangan
         ]);
         
-        return redirect(route('index'))->back()-with('success','berhasil input data');
+        return redirect()->back()->with('success','berhasil input data');
         // $image = $request->file('image');
         // if($image){
         //     $name_gen = hexdec(uniqid());

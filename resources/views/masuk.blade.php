@@ -19,7 +19,7 @@
         <h1 class="h1_title" align="center">MASUKKAN DATA ANDA</h1>
     </header>
     <div class="container">
-        <form action="{{ route('input') }}" method="POST" enctype="multipart/form-data">
+        <form id="myform" action="{{ route('input') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="main">
                 <div class="col">
@@ -36,25 +36,23 @@
                     <strong><label for="profile">Ambil foto</label></strong>
                 </div>
                 <div class="col_input">
-                    <input name="profile" type="file">
+                    <input id="profile" type="hidden" name="profile" value="dasds"/>
                     <script src="{{ asset('js/webcam.js') }}"></script>
                     <div id="my_camera" style="width:320px; height:240px;"></div>
                     <div id="my_result"></div>
                     <script language="JavaScript">
                         Webcam.attach( '#my_camera' );
-        
                         function take_snapshot() {
                             Webcam.snap( function(data_uri) {
-                                document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-                                document.getElementById('foto').value = data_uri;
-                                // console.log(data_uri);
+                                var raw_image_data = data_uri.replace(/^data\:image\/\w+\;base64\,/, '');
+                                var leta = document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+                                         
+                                document.getElementById('profile').value = raw_image_data; 
+                              
                             } );
                         }
                     </script>
                     <a href="javascript:void(take_snapshot())">Take Snapshot</a>
-                {{-- 
-                    <input name="profile" type="file" style="width: 100%; box-sizing: border-box" class="custom-file-input" required />
-                --}}
                 </div>
             </div>
             <div class="main">
