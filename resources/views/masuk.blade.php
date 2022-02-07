@@ -40,7 +40,7 @@
                     <script src="{{ asset('js/webcam.js') }}"></script>
                     <div id="my_camera" style="width:320px; height:240px;"></div>
                     <div id="my_result"></div>
-                    <script language="JavaScript">
+                    <script language="JavaScript" style="margin-bottom: 20px;">
                         Webcam.attach( '#my_camera' );
                         function take_snapshot() {
                             Webcam.snap( function(data_uri) {
@@ -52,8 +52,9 @@
                               
                             } );
                         }
-                    </script>
-                    <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+		    </script>
+			<br>
+                    <a style="font-weight: bold; background: #00C1D4; color: black; font-size: 10pt; width: auto; border: none; padding: 10px 20px; cursor: pointer; margin-top: 20; text-decoration: none;" href="javascript:void(take_snapshot())">Take Snapshot</a>
                 </div>
             </div>
             <div class="main">
